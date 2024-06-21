@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Añadir Evento</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(to bottom, #b19cd9, #d8bfd8); 
+            margin: 0;
+        }
+
+        form {
+            background-color: #e6e6fa;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            max-height: 400px; /* Set a maximum height for the form */
+            overflow-y: auto; /* Add vertical scroll if content overflows */
+        }
+
+        h2 {
+            text-align: center;
+            color: #4b0082;
+            font-family: Arial, sans-serif;
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
+            color: #4b0082;
+            font-family: Arial, sans-serif;
+        }
+
+        input[type="text"], input[type="email"], input[type="password"], input[type="date"], select {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-family: Arial, sans-serif;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #9370db;
+            color: white;
+            font-family: Arial, sans-serif;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #7a50b9;
+        }
+
+        #logo{
+            width:300px;
+            height:300px;
+        }
+    </style>
+</head>
+<body>
+    <form action="eventos.php?id_discoteca=<?php echo htmlspecialchars($_GET['id_discoteca']); ?>" method="POST">
+        <h2>Añadir Evento</h2>
+        <input type="hidden" name="id_discoteca" id="id_discoteca" value="">
+        <label for="nombre">Nombre del Evento:</label>
+        <input type="text" id="nombre" name="nombre" required><br>
+        
+        <label for="descripcion">Descripción:</label>
+        <textarea id="descripcion" name="descripcion" required></textarea><br>
+
+        <label for="fecha">Fecha:</label>
+        <input id="fecha" name="fecha" type="date" required></input><br>
+        
+        <label for="aforo">Aforo Permitido:</label>
+        <input type="number" id="aforo" name="aforo" required><br>
+        
+        <button type="submit">Añadir Evento</button>
+    </form>
+
+    <script>
+        // JavaScript para obtener y asignar el id_discoteca desde la URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const id_discoteca = urlParams.get('id_discoteca');
+        document.getElementById('id_discoteca').value = id_discoteca;
+    </script>
+</body>
+</html>
